@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemWidth = getItemWidth();
         spinButton.style.display = 'none';
         slotMachine.style.opacity = 1;
-        document.querySelector('.spin-blur').style.opacity = '1';
+        // document.querySelector('.spin-blur').style.opacity = '1';
 
         const winIndex = getRandomProductIndex();
         currentWinIndex = winIndex; // lưu lại để dùng khi kết thúc
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.addEventListener('transitionend', () => {
             isSpinning = false;
 
-            document.querySelector('.spin-blur').style.opacity = '0';
+            // document.querySelector('.spin-blur').style.opacity = '0';
             resultImg.src = products[winIndex].img;
 
             setTimeout(() => {

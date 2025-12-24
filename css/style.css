@@ -1,0 +1,1136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    /* QUAN TRỌNG */
+}
+
+.scene {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+body {
+    background: linear-gradient(180deg, #ffffff, #5e61e9);
+    min-height: 100vh;
+    color: #3b3b98;
+    /* background-image: url('../img/Asset\ 1.png'); */
+}
+
+
+/* ================= HEADER RESPONSIVE ================= */
+
+.header {
+    padding: clamp(16px, 4vw, 28px) clamp(16px, 5vw, 32px) 12px;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Logo */
+.logo-left img,
+.logo-right img {
+    width: clamp(70px, 16vw, 200px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* ===== HEADER TITLE IMAGE ===== */
+
+.header-title {
+    display: block;
+    margin: clamp(8px, 2vh, 16px) auto 0;
+
+    /* KHÓA KÍCH THƯỚC THEO MÀN HÌNH */
+    width: min(80vw, 420px);
+    max-height: 18vh;
+
+    object-fit: contain;
+}
+
+
+@media (max-width: 480px) {
+    .header-top {
+        flex-direction: row;
+    }
+
+    .header-title {
+        width: 85vw;
+        max-height: 14vh;
+    }
+}
+
+
+
+/* ================= SPIN AREA ================= */
+
+.spin-area {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.energy-wrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.energy-ring {
+    position: absolute;
+    width: clamp(180px, 45vw, 270px);
+    height: clamp(180px, 45vw, 270px);
+    border-radius: 50%;
+    z-index: 1;
+
+    background: radial-gradient(circle,
+            rgba(200, 170, 255, 0.45),
+            rgba(160, 120, 255, 0.25),
+            transparent 65%);
+
+    filter: blur(2px);
+}
+
+.energy-ring::before,
+.energy-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+
+    border: 2px solid rgba(220, 180, 255, 0.55);
+
+    animation: energyWave 3.5s ease-out infinite;
+}
+
+.energy-ring::after {
+    animation-delay: 1.7s;
+    border-color: rgba(255, 200, 255, 0.4);
+}
+
+
+@keyframes energyWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    70% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1.9);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.spin-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+
+    filter: drop-shadow(0 0 18px rgba(180, 140, 255, 0.9));
+    transition: transform 0.15s ease;
+}
+
+.spin-btn:active img {
+    transform: scale(0.95);
+}
+
+.hud-ring {
+    position: absolute;
+    width: clamp(200px, 50vw, 280px);
+    height: clamp(200px, 50vw, 280px);
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+
+    animation: hudSpin 6s linear infinite;
+
+    filter:
+        drop-shadow(0 0 14px rgba(255, 140, 255, 0.9)) drop-shadow(0 0 30px rgba(180, 120, 255, 0.6));
+}
+
+
+
+@keyframes hudSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.spinning .hud-ring {
+    animation: hudSpin 2.8s linear infinite reverse;
+}
+
+
+.spin-btn {
+    position: relative;
+    z-index: 3;
+}
+
+
+.energy-sphere {
+    position: absolute;
+    width: clamp(240px, 65vw, 360px);
+    height: clamp(240px, 65vw, 360px);
+    border-radius: 50%;
+    z-index: 0;
+
+    background:
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.45),
+            rgba(220, 200, 255, 0.25) 40%,
+            rgba(180, 140, 255, 0.15) 60%,
+            transparent 75%);
+
+    filter: blur(8px);
+}
+
+
+.energy-burst {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 70%;
+    pointer-events: none;
+    z-index: 0;
+
+    background:
+        repeating-conic-gradient(from 0deg,
+            rgba(255, 255, 255, 0.45) 0deg 1deg,
+            rgba(255, 255, 255, 0.05) 1deg 3deg,
+            transparent 3deg 6deg);
+
+    mask: radial-gradient(circle,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 35%,
+            rgba(0, 0, 0, 0.7) 55%,
+            rgba(0, 0, 0, 0) 75%);
+
+    filter:
+        blur(1.2px) drop-shadow(0 0 25px rgba(200, 160, 255, 0.8));
+
+    animation:
+        burstRotate 14s linear infinite,
+        burstPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes burstRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes burstPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+}
+
+
+
+
+
+
+
+
+.hint-text {
+    margin-top: 18px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ================= FOOTER RESPONSIVE ================= */
+
+.footer {
+    padding: clamp(40px, 8vw, 70px) 16px 40px;
+    text-align: center;
+    flex-shrink: 0; /* QUAN TRỌNG */
+}
+
+.footer-text img {
+    width: clamp(220px, 60vw, 420px);
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
+
+
+.items {
+    display: flex;
+    transform: translateX(0);
+    transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+
+
+.item {
+    min-width: clamp(180px, 35vw, 350px);
+    height: clamp(220px, 40vh, 450px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+.slot-machine {
+    width: min(2000px, 95vw);
+    height: clamp(260px, 45vh, 430px);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+    position: relative;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    /* QUAN TRỌNG */
+}
+
+.scene {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+body {
+    background: linear-gradient(180deg, #ffffff, #6066ed);
+    min-height: 100vh;
+    color: #3b3b98;
+    /* background-image: url('../img/Asset\ 1.png'); */
+}
+
+/* ================= HEADER RESPONSIVE ================= */
+
+.header {
+    padding: clamp(16px, 4vw, 28px) clamp(16px, 5vw, 32px) 12px;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Logo */
+.logo-left img,
+.logo-right img {
+    width: clamp(70px, 16vw, 200px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* ===== HEADER TITLE IMAGE ===== */
+
+.header-title {
+    display: block;
+    margin: clamp(8px, 2vh, 16px) auto 0;
+
+    /* KHÓA KÍCH THƯỚC THEO MÀN HÌNH */
+    width: min(80vw, 420px);
+    max-height: 18vh;
+
+    object-fit: contain;
+}
+
+
+@media (max-width: 480px) {
+    .header-top {
+        flex-direction: row;
+    }
+
+    .header-title {
+        width: 85vw;
+        max-height: 14vh;
+    }
+}
+
+
+
+/* ================= SPIN AREA ================= */
+
+.spin-area {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.energy-wrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.energy-ring {
+    position: absolute;
+    width: clamp(180px, 45vw, 270px);
+    height: clamp(180px, 45vw, 270px);
+    border-radius: 50%;
+    z-index: 1;
+
+    background: radial-gradient(circle,
+            rgba(200, 170, 255, 0.45),
+            rgba(160, 120, 255, 0.25),
+            transparent 65%);
+
+    filter: blur(2px);
+}
+
+.energy-ring::before,
+.energy-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+
+    border: 2px solid rgba(220, 180, 255, 0.55);
+
+    animation: energyWave 3.5s ease-out infinite;
+}
+
+.energy-ring::after {
+    animation-delay: 1.7s;
+    border-color: rgba(255, 200, 255, 0.4);
+}
+
+
+@keyframes energyWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    70% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1.9);
+        opacity: 0;
+    }
+}
+
+
+
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.spin-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+
+    filter: drop-shadow(0 0 18px rgba(180, 140, 255, 0.9));
+    transition: transform 0.15s ease;
+}
+
+.spin-btn:active img {
+    transform: scale(0.95);
+}
+
+.hud-ring {
+    position: absolute;
+    width: clamp(200px, 50vw, 280px);
+    height: clamp(200px, 50vw, 280px);
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+
+    animation: hudSpin 6s linear infinite;
+
+    filter:
+        drop-shadow(0 0 14px rgba(255, 140, 255, 0.9)) drop-shadow(0 0 30px rgba(180, 120, 255, 0.6));
+}
+
+
+
+@keyframes hudSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.spinning .hud-ring {
+    animation: hudSpin 2.8s linear infinite reverse;
+}
+
+
+.spin-btn {
+    position: relative;
+    z-index: 3;
+}
+
+
+.energy-sphere {
+    position: absolute;
+    width: clamp(240px, 65vw, 360px);
+    height: clamp(240px, 65vw, 360px);
+    border-radius: 50%;
+    z-index: 0;
+
+    background:
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.45),
+            rgba(220, 200, 255, 0.25) 40%,
+            rgba(180, 140, 255, 0.15) 60%,
+            transparent 75%);
+
+    filter: blur(8px);
+}
+
+
+.energy-burst {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 70%;
+    pointer-events: none;
+    z-index: 0;
+
+    background:
+        repeating-conic-gradient(from 0deg,
+            rgba(255, 255, 255, 0.45) 0deg 1deg,
+            rgba(255, 255, 255, 0.05) 1deg 3deg,
+            transparent 3deg 6deg);
+
+    mask: radial-gradient(circle,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 35%,
+            rgba(0, 0, 0, 0.7) 55%,
+            rgba(0, 0, 0, 0) 75%);
+
+    filter:
+        blur(1.2px) drop-shadow(0 0 25px rgba(200, 160, 255, 0.8));
+
+    animation:
+        burstRotate 14s linear infinite,
+        burstPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes burstRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes burstPulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+}
+
+
+
+
+
+
+
+
+.hint-text {
+    margin-top: 18px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ================= FOOTER RESPONSIVE ================= */
+
+.footer {
+    padding: clamp(40px, 8vw, 70px) 16px 40px;
+    text-align: center;
+    flex-shrink: 0; /* QUAN TRỌNG */
+}
+
+.footer-text img {
+    width: clamp(220px, 60vw, 420px);
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
+
+
+.items {
+    display: flex;
+    transform: translateX(0);
+    align-items: center;
+    height: 100%;
+    transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+
+
+.item {
+    min-width: clamp(180px, 35vw, 350px);
+    /* height: clamp(220px, 40vh, 450px); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+.slot-machine {
+    width: min(2000px, 95vw);
+    height: clamp(260px, 45vh, 430px);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+
+
+
+
+
+.spin-btn {
+    width: clamp(90px, 22vw, 150px);
+    height: clamp(90px, 22vw, 150px);
+    font-size: 2.1rem;
+    background-color: #63a7ec;
+    color: #ffffff;
+    font-weight: bold;
+    border: 4px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spin-btn::before {
+    content: "START";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(to right, #92c5ec, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(1.2rem, 4vw, 2.1rem);
+    font-weight: bold;
+}
+
+.item img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+
+
+
+.marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: clamp(140px, 30vh, 250px);
+    width: 6px;
+    z-index: 4;
+    pointer-events: none;
+
+    background: linear-gradient(to bottom,
+            transparent,
+            #ffdf7e 20%,
+            #ffd34d 50%,
+            #ffdf7e 80%,
+            transparent);
+
+    box-shadow:
+        0 0 12px rgba(255, 210, 100, 0.9),
+        0 0 25px rgba(255, 190, 70, 0.7);
+}
+
+
+
+
+
+.spin-blur {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* BẮT BUỘC CÓ */
+    background: rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    mask: radial-gradient(circle,
+            transparent 0%,
+            transparent 35%,
+            rgba(0, 0, 0, 0.6) 55%,
+            rgba(0, 0, 0, 1) 70%);
+
+    box-shadow:
+        0 0 40px rgba(180, 140, 255, 0.35),
+        inset 0 0 40px rgba(200, 160, 255, 0.25);
+
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item img {
+    width: 50%;
+    height: auto;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.slot-machine {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.marker {
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 250px;
+    z-index: 4;
+    background: linear-gradient(to bottom,
+            transparent,
+            #ffdf7e,
+            #ffd34d,
+            #ffdf7e,
+            transparent);
+}
+
+.spin-blur {
+    position: absolute;
+    width: clamp(300px, 80vw, 520px);
+    height: clamp(300px, 80vw, 520px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    backdrop-filter: blur(14px);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result img {
+    max-width: 90vw;      /* không vượt chiều ngang màn hình */
+    max-height: 80vh;     /* không vượt chiều cao màn hình */
+    width: auto;
+    height: auto;
+    object-fit: contain;  /* KHÔNG BỊ MÉO */
+}
+
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+    body {
+        overflow: hidden;
+    }
+
+    .slot-machine {
+        height: 260px;
+    }
+
+    .item {
+        min-width: 180px;
+        height: 240px;
+    }
+
+    .marker {
+        height: 160px;
+    }
+}
+
+}
+
+
+
+
+
+
+.spin-btn {
+    width: clamp(90px, 22vw, 150px);
+    height: clamp(90px, 22vw, 150px);
+    font-size: 2.1rem;
+    background-color: #63a7ec;
+    color: #ffffff;
+    font-weight: bold;
+    border: 4px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spin-btn::before {
+    content: "START";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(to right, #92c5ec, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(1.2rem, 4vw, 2.1rem);
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+.marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 70%;
+    z-index: 5;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #ffdf7e 25%,
+        #ffd34d 50%,
+        #ffdf7e 75%,
+        transparent
+    );
+
+    box-shadow:
+        0 0 12px rgba(255, 210, 100, 0.9),
+        0 0 25px rgba(255, 190, 70, 0.7);
+}
+
+
+
+
+
+.spin-blur {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* BẮT BUỘC CÓ */
+    background: rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    mask: radial-gradient(circle,
+            transparent 0%,
+            transparent 35%,
+            rgba(0, 0, 0, 0.6) 55%,
+            rgba(0, 0, 0, 1) 70%);
+
+    box-shadow:
+        0 0 40px rgba(180, 140, 255, 0.35),
+        inset 0 0 40px rgba(200, 160, 255, 0.25);
+
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item img {
+    width: 50%;
+    height: 45%;
+    object-fit: contain;
+}
+
+
+.slot-machine {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.marker {
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 250px;
+    z-index: 4;
+    background: linear-gradient(to bottom,
+            transparent,
+            #ffdf7e,
+            #ffd34d,
+            #ffdf7e,
+            transparent);
+}
+
+.spin-blur {
+    position: absolute;
+    width: clamp(300px, 80vw, 520px);
+    height: clamp(300px, 80vw, 520px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    backdrop-filter: blur(14px);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result img {
+    max-width: 90vw;      /* không vượt chiều ngang màn hình */
+    max-height: 80vh;     /* không vượt chiều cao màn hình */
+    width: auto;
+    height: auto;
+    object-fit: contain;  /* KHÔNG BỊ MÉO */
+}
+
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+    body {
+        overflow: hidden;
+    }
+
+    .slot-machine {
+        height: 260px;
+    }
+
+    .item {
+        min-width: 180px;
+        height: 240px;
+    }
+
+    .marker {
+        height: 160px;
+    }
+}
+
+
+

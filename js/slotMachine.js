@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isSpinning = false;
 
             // document.querySelector('.spin-blur').style.opacity = '0';
+            slotMachine.style.opacity = 0;
             resultImg.src = products[winIndex].img;
 
             setTimeout(() => {

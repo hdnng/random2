@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img.src = products[winIndex].img;
 
             img.onload = () => {
+                resultImg.src = '';
                 resultImg.src = img.src;
 
                 document.body.classList.add('show-overlay');
@@ -98,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.add('hidden');
 
         document.body.classList.remove('show-overlay');
-        
+
         spinButton.style.display = 'block';
         headerTitle.style.display = 'block';
         // footerText.style.display = 'block';

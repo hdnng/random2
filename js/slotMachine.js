@@ -80,11 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
             slotMachine.style.opacity = 0;
             headerTitle.style.display = 'none';
             footerText.style.display = 'none';
-            resultImg.src = products[winIndex].img;
 
-            setTimeout(() => {
+            const img = new Image();
+            img.src = products[winIndex].img;
+
+            img.onload = () => {
+                resultImg.src = img.src;
                 overlay.classList.remove('hidden');
-            }, 200);
+            };
         }, { once: true });
     });
 

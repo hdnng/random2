@@ -79,13 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
             isSpinning = false;
             slotMachine.style.opacity = 0;
             headerTitle.style.display = 'none';
-            footerText.style.display = 'none';
+            // footerText.style.display = 'none';
 
             const img = new Image();
             img.src = products[winIndex].img;
 
             img.onload = () => {
                 resultImg.src = img.src;
+
+                document.body.classList.add('show-overlay');
+
                 overlay.classList.remove('hidden');
             };
         }, { once: true });
@@ -93,9 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     overlay.addEventListener('click', () => {
         overlay.classList.add('hidden');
+
+        document.body.classList.remove('show-overlay');
+        
         spinButton.style.display = 'block';
         headerTitle.style.display = 'block';
-        footerText.style.display = 'block';
+        // footerText.style.display = 'block';
         slotMachine.style.opacity = 0;
     });
 });

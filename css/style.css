@@ -310,6 +310,10 @@ body {
     height: auto;
 }
 
+/* .footer-text {
+    transition: transform 0.35s ease;
+} */
+
 /* ===================== SLOT MACHINE ===================== */
 
 .slot-machine {
@@ -379,6 +383,12 @@ body {
     /* KHÔNG BỊ MÉO */
 }
 
+body.show-overlay .footer-text {
+    transform: scale(0.5) translateY(100px);
+    transition: transform 0.35s ease;
+}
+
+
 /* ===================== MEDIA QUERIES ===================== */
 
 @media (max-width: 480px) {
@@ -394,6 +404,4 @@ body {
         min-width: 180px;
         height: 240px;
     }
-
-
 }

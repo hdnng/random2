@@ -388,8 +388,8 @@ body.show-overlay .footer-text {
     transition: transform 0.35s ease;
 }
 
-
 /* ===================== MEDIA QUERIES ===================== */
+
 
 @media (max-width: 480px) {
     body {
@@ -403,5 +403,9 @@ body.show-overlay .footer-text {
     .item {
         min-width: 180px;
         height: 240px;
+    }
+
+    body.show-overlay .footer-text {
+        transform: scale(0.7) translateY(20px);
     }
 }

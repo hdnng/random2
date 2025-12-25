@@ -156,16 +156,17 @@ animate();
 
 /* ================= SPAWN GROUP ================= */
 function launchGroup() {
+    if (document.hidden) return;
+
     const count =
         GROUP_MIN + Math.floor(Math.random() * (GROUP_MAX - GROUP_MIN + 1));
 
     for (let i = 0; i < count; i++) {
         rockets.push(
-            new Rocket(
-                canvas.width * (0.25 + Math.random() * 0.5)
-            )
+            new Rocket(canvas.width * (0.25 + Math.random() * 0.5))
         );
     }
 }
+
 
 setInterval(launchGroup, 1600);

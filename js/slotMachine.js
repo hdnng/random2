@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = document.querySelector('.items');
     const overlay = document.getElementById('overlay');
     const resultImg = document.getElementById('result-img');
-
+    const headerTitle = document.getElementById('header-title');
+    const footerText = document.getElementById('footer-text');
     const totalItems = 9;
     const repeatCount = 12;
 
@@ -12,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstItem = document.querySelector('.item');
         return firstItem.offsetWidth;
     }
-
-    
 
     const products = [
         { img: '/img/result/KQ1.png', percentage: 12 },
@@ -44,12 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetPosition(centerOffset, itemWidth) {
-    items.style.transition = 'none';
-    items.style.transform =
-        `translateX(${-(totalItems * itemWidth * 4) + centerOffset}px)`;
-    items.offsetHeight;
-}
-
+        items.style.transition = 'none';
+        items.style.transform =
+            `translateX(${-(totalItems * itemWidth * 4) + centerOffset}px)`;
+        items.offsetHeight;
+    }
 
     spinButton.addEventListener('click', () => {
         if (isSpinning) return;
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemWidth = getItemWidth();
         spinButton.style.display = 'none';
         slotMachine.style.opacity = 1;
-        // document.querySelector('.spin-blur').style.opacity = '1';
 
         const winIndex = getRandomProductIndex();
         currentWinIndex = winIndex; // lưu lại để dùng khi kết thúc
@@ -80,21 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         items.addEventListener('transitionend', () => {
             isSpinning = false;
-
-            // document.querySelector('.spin-blur').style.opacity = '0';
             slotMachine.style.opacity = 0;
+            headerTitle.style.display = 'none';
+            footerText.style.display = 'none';
             resultImg.src = products[winIndex].img;
 
             setTimeout(() => {
                 overlay.classList.remove('hidden');
-            }, 500);
+            }, 200);
         }, { once: true });
     });
-
 
     overlay.addEventListener('click', () => {
         overlay.classList.add('hidden');
         spinButton.style.display = 'block';
+        headerTitle.style.display = 'block';
+        footerText.style.display = 'block';
         slotMachine.style.opacity = 0;
     });
 });

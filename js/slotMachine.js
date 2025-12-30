@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const products = [
-        { img: '/img/result/KQ1.png', percentage: 13 },
-        { img: '/img/result/KQ 2.png', percentage: 2 },
-        { img: '/img/result/KQ 3.png', percentage: 13 },
-        { img: '/img/result/KQ 4.png', percentage: 13 },
-        { img: '/img/result/KQ 5.png', percentage: 13 },
-        { img: '/img/result/KQ 6.png', percentage: 13 },
-        { img: '/img/result/KQ 7.png', percentage: 9 },
-        { img: '/img/result/KQ 8.png', percentage: 11 },
-        { img: '/img/result/KQ 9.png', percentage: 13 }
+        { img: '/img/result/KQ1.png', percentage: 0 },
+        { img: '/img/result/KQ 2.png', percentage: 80 },
+        { img: '/img/result/KQ 3.png', percentage: 0 },
+        { img: '/img/result/KQ 4.png', percentage: 0 },
+        { img: '/img/result/KQ 5.png', percentage: 0 },
+        { img: '/img/result/KQ 6.png', percentage: 0 },
+        { img: '/img/result/KQ 7.png', percentage: 15 },
+        { img: '/img/result/KQ 8.png', percentage: 5 },
+        { img: '/img/result/KQ 9.png', percentage: 0 }
     ];
 
     // repeat item

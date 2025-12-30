@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay');
     const resultImg = document.getElementById('result-img');
     const headerTitle = document.getElementById('header-title');
-    const footerText = document.getElementById('footer-text');
     const totalItems = 9;
     const repeatCount = 12;
 
@@ -15,15 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const products = [
-        { img: '/img/result/KQ1.png', percentage: 12 },
-        { img: '/img/result/KQ 2.png', percentage: 11 },
-        { img: '/img/result/KQ 3.png', percentage: 11 },
-        { img: '/img/result/KQ 4.png', percentage: 11 },
-        { img: '/img/result/KQ 5.png', percentage: 11 },
-        { img: '/img/result/KQ 6.png', percentage: 11 },
-        { img: '/img/result/KQ 7.png', percentage: 11 },
+        { img: '/img/result/KQ1.png', percentage: 13 },
+        { img: '/img/result/KQ 2.png', percentage: 2 },
+        { img: '/img/result/KQ 3.png', percentage: 13 },
+        { img: '/img/result/KQ 4.png', percentage: 13 },
+        { img: '/img/result/KQ 5.png', percentage: 13 },
+        { img: '/img/result/KQ 6.png', percentage: 13 },
+        { img: '/img/result/KQ 7.png', percentage: 9 },
         { img: '/img/result/KQ 8.png', percentage: 11 },
-        { img: '/img/result/KQ 9.png', percentage: 11 }
+        { img: '/img/result/KQ 9.png', percentage: 13 }
     ];
 
     // repeat item
@@ -79,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isSpinning = false;
             slotMachine.style.opacity = 0;
             headerTitle.style.display = 'none';
-            // footerText.style.display = 'none';
 
             const img = new Image();
             img.src = products[winIndex].img;
@@ -102,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         spinButton.style.display = 'block';
         headerTitle.style.display = 'block';
-        // footerText.style.display = 'block';
         slotMachine.style.opacity = 0;
     });
 });
